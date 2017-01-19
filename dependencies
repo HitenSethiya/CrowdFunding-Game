@@ -1,0 +1,5 @@
+1. install django-phonenumber-field
+sudo -H pip install django-phonenumber-field
+
+2. install django-money models
+sudo -H pip install py-moneyed django-money

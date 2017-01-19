@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Send Money</h3>
+                    </div>
+                    <div class="panel-body">
+<form method="post" action="{% url 'transact' %}">
+{% csrf_token %}
+<p class="bs-component">
+{% csrf_token %}
+{{ transaction_form.as_p }}
+
+
+</p>
+<p class="bs-component">
+    <center><input class="btn btn-success btn-sm" type="submit" value="Send Money" /></center></p>
+</form></div></div></div></div></div>
+                        {% endblock %}

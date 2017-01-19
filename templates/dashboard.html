@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 align="center">Players</h3>
+{% for player in user %}
+        <div class="w3-row w3-container w3-col m4 l3" style="margin:50px; display:block">
+            <div id="booking" class="card card-outline-primary card-info text-xs-center">
+                <div class="card-block">
+                    <h4 class="card-title"><b>{{ player.username }}</b></h4>
+                    <h4 class="card-title"><b>{{ player.money }}</b></h4>
+                    <p class="card-text">From</p>
+                    <p class="card-text date"><b>{{ player.college }}</b><br></p>
+                    <p class="card-text">Email</p><p> <b>{{ player.email }}</b><br></p>
+                    <p class="card-text">Contact <b>{{ player.contact }}</b><br></p>
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

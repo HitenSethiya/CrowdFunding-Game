@@ -1,0 +1,100 @@
+body{
+	background-color: #f5f5f5;
+	overflow:hidden;
+	
+}
+
+.header{
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	height: 10%;
+	width: 100%;
+	background-color: #F44336;
+	padding-left: 4%;
+	padding-top: 20px;
+	font-size: 200%;
+	font-family: 'Poppins', sans-serif;
+}
+
+.maintext{
+	position: absolute;
+	top: 5%;
+	font-size: 200%;
+	font-family: 'Poppins', sans-serif;
+	text-align: center;
+	vertical-align: middle;
+	height: 10%;
+	width: 100%;
+
+}
+
+.fields_input{
+	position: absolute;
+	top: 25%;
+	left: 35%;
+	height: 60%;
+	width:	30%;
+	background-color: #491da0;
+	font-family: 'Poppins', sans-serif;
+	border-radius: 6px;
+}
+
+.username_input{
+	position: absolute;
+	top: 32%;
+	height: 10%;
+	width: 60%;
+	left: 20%;
+}
+
+#user_name_input{
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	height: 100%;
+	width: 100%;
+	border-radius: 8px;
+	font-family: 'Poppins', sans-serif;
+}
+
+.password_input{
+	position: absolute;
+	top: 52%;
+	height: 10%;
+	width: 60%;
+	left: 20%;
+}
+
+#pass_name_input{
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	height: 100%;
+	width: 100%;
+	border-radius: 8px;
+	font-family: 'Poppins', sans-serif;
+}
+
+.SignIn{
+	position: absolute;
+	top: 74%;
+	height: 10%;
+	left: 35%;
+	width: 30%;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #0aa846;
+	padding-top: 4px;
+	font-size: 140%;
+	border-radius: 6px;
+}
+
+.signup{
+	position: absolute;
+	top: 88%;
+	left: 0%;
+	width: 100%;
+	text-align: center;
+	vertical-align: middle;
+}

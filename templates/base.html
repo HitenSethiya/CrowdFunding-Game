@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<title>CrowdFunding Game</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type = "text/css" href="{% static 'css/w3.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap_min.css' %}">
+<link href="{% static 'css/jquery.css' %}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'css/timepicki.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-datepaginator.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-datepicker.css' %}">
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/jquery_ui.js' %}"></script>
+<script src="{% static 'js/jquery-3.1.0.min.js' %}"></script>
+<script src="{% static 'js/jquerytimepicker.js' %}"></script>
+<script src="{% static 'js/timepicki.js' %}"></script>
+<script src="{% static 'js/moment.js' %}"></script>
+<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'js/bootstrap-datepaginator.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/bootstrap4.css' %}" >
+<script src="{% static 'js/bootstrap4.js' %}" ></script>
+<style>
+    html,body{height: 100%}
+    #footer {
+        clear: both;
+        position: relative;
+        z-index: 10;
+        height: 3em;
+        margin-top: -3em;
+    }
+</style>
+<body>
+<ul class="w3-navbar navbar-inverse">
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'transact' %}">Transact Money</a></li>
+    <li><a href="{% url 'scoreboard' %}">Scoreboard</a></li>
+
+
+
+
+    <li class="w3-right"><a class="w3-red" href="{% url 'logout' %}">Logout</a></li>
+    <li class="w3-right"><a href="https://goo.gl/forms/zos1lJQW3YDsjU3z1">Feedback</a></li>
+</ul>
+<div class="w3-display-container" style="margin-bottom:50px">
+    <img src="{% static 'img/CFG.jpg' %}" style="width:100%">
+    <div class="w3-display-bottomleft w3-container w3-amber w3-hover-Red w3-hide-small"
+         style="bottom:10%;opacity:0.7;width:70%">
+        <h2><b>Crowd Funding Game<br>Udgam 2016</b></h2>
+    </div>
+</div>
+{% block content %}
+{% endblock %}
+<br>
+<div id="footer" style="padding-top: 100px;padding-bottom: 50px">
+    <div align="center">
+        Copyrights E-Cell IIT Guwahati<br>
+        Developed by <a href="https://www.facebook.com/hitensethiya1">Hiten Sethiya</a> and <a href=>Pravandan Chand</a>
+    </div>
+</div>
+</body>
+</html>

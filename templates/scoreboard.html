@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for player in players %}
+    <div class="w3-row w3-container " style="margin:50px; display:block">
+            <div id="booking" class="card card-outline-primary card-info text-xs-center">
+                <div class="card-block">
+                    <h4 class="card-title"><b>{{ player.first_name }} {{ player.last_name }}</b></h4>
+                    <p class="card-text">{{ player.profile.college }} </p>
+                    <p class="card-title"><b>{{ player.profile.money }}</b><br></p>
+
+                </div>
+            </div>
+        </div>
+
+{% endfor %}
+
+
+   {% endblock %}
