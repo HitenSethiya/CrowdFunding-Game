@@ -11,11 +11,14 @@
 <form method="post" action="{% url 'transact' %}">
 {% csrf_token %}
 <p class="bs-component">
-{% csrf_token %}
+
 {{ transaction_form.as_p }}
 
 
 </p>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+{% endfor %}
 <p class="bs-component">
     <center><input class="btn btn-success btn-sm" type="submit" value="Send Money" /></center></p>
 </form></div></div></div></div></div>

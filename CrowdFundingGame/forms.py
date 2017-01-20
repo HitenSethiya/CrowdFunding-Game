@@ -21,19 +21,6 @@ class SignupForm(forms.Form):
     password_repeat = forms.CharField(label="Re-enter Password", max_length=30,
                                       widget=forms.PasswordInput(attrs={'class': 'form-control', 'name': 'password2'}))
 
-    def clean_username(self):
-        username = self.cleaned_data['username']
-        if User.objects.filter(username=username).exists():
-            raise ValidationError("Username already used choose other")
-        return username
-
-    def clean(self):
-        form_data = self.cleaned_data
-        if form_data['password'] != form_data['password_repeat']:
-            self._errors["password"] = ["Password do not match"]  # Will raise a error message
-            del form_data['password']
-        return form_data
-
 
 class UserForm(forms.ModelForm):
     class Meta:

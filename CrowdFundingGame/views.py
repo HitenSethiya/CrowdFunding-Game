@@ -15,7 +15,13 @@ def signup(request):
     if not request.user.is_authenticated:
         if request.method == 'POST':
             form = SignupForm(request.POST)
-            if form.is_valid() and form.clean_username() and form.clean():
+            if form.is_valid():
+
+                if User.objects.filter(username=form.cleaned_data['username']).exists():
+                    raise ValidationError("Username already used choose other")
+                form_data = form.cleaned_data
+                if form_data['password'] != form_data['password_repeat']:
+                    form._errors["password"] = ["Password do not match"]
                 user = User.objects.create_user(
                     username=form.cleaned_data['username'],
                     password=form.cleaned_data['password'],
@@ -24,9 +30,9 @@ def signup(request):
                 )
                 authenticate(username=user.username, password=user.password)
                 login(request,user)
-                return HttpResponseRedirect('update_profile/')
+                return HttpResponseRedirect('/update_profile')
             else:
-                return render(request, 'logout.html')
+                raise Exception
         else:
             form = SignupForm()
             variables = RequestContext(request, {'form': form})
@@ -36,7 +42,7 @@ def signup(request):
                 variables,
             )
     else:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/update_profile')
 
 
 @login_required(login_url="login/")

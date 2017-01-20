@@ -23,6 +23,7 @@ from CrowdFundingGame.forms import *
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home, name='home'),
+    url(r'^accounts/profile/$', home, name='home'),
     url(r'^login/$', views.login, {'template_name': 'login.html', 'authentication_form': LoginForm}, name='login'),
     url(r'^logout/$', logout_view, name='logout'),
     url(r'^signup/$', signup, name='signup'),
