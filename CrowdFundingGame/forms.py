@@ -36,7 +36,7 @@ class ProfileForm(forms.ModelForm):
 
 
 class TransactionForm(forms.Form):  # error
-    send_to = forms.ModelChoiceField(queryset=User.objects.filter(profile__type__exact='P'))
+    send_to = forms.ModelChoiceField(User.objects.filter(profile__type__exact='P'))
     money = forms.IntegerField(label="Money",
                                widget=forms.NumberInput(attrs={'class': 'form-control', 'name': 'money'}))
 

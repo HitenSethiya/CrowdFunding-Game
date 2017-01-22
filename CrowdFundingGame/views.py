@@ -76,22 +76,33 @@ def home(request):
 def transact_money(request):
     if request.user.profile.type == 'A' :
         if request.method == 'POST':
-            user_money = request.user.profile.money
-            giving_money = int(request.POST.get('money'))
-            player = request.POST.get('send_to')
-            if user_money>=giving_money:
-                user_money -= giving_money
-                player.profile.money += giving_money
-                return HttpResponseRedirect('scoreboard')
+            form = TransactionForm(request.POST)
+            if form.is_valid():
+                user_money = request.user.profile.money
+                giving_money = form.cleaned_data['money']
+                player = form.cleaned_data['send_to']
+                print(player)
+                if user_money >= giving_money:
+                    request.user.profile.money -= giving_money
+                    print(user_money, request.user.profile.money)
+                    request.user.profile.save()
+
+                    player.profile.money += giving_money
+                    player.profile.save()
+                    return HttpResponseRedirect('/scoreboard')
+                else:
+                    messages.error(request, ('Please correct the error above.'))
+                    transaction_form = TransactionForm
+                    return render(request, 'transaction.html', {'transaction_form': transaction_form})
             else:
-                messages.error(request, ('Please correct the error above.'))
-                transaction_form = TransactionForm
-                return render(request, 'transaction.html', {'transaction_form': transaction_form})
+                raise Exception
         else:
             transaction_form = TransactionForm
             return render(request, 'transaction.html', {'transaction_form': transaction_form})
     else:
         messages.error(request, ('You are not allowed please re-register as audience'))
+        transaction_form = TransactionForm
+        return render(request, 'transaction.html', {'transaction_form': transaction_form})
 
 
 
