@@ -25,7 +25,7 @@ def signup(request):
                 user = User.objects.create_user(
                     username=form.cleaned_data['username'],
                     password=form.cleaned_data['password'],
-                    email=None,
+
 
                 )
                 authenticate(username=user.username, password=user.password)
@@ -53,6 +53,7 @@ def update_profile(request):
         profile_form = ProfileForm(request.POST, instance=request.user.profile)
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
+
             profile_form.save()
             messages.success(request, ('Your profile was successfully updated!'))
             return redirect('update_profile')
@@ -67,32 +68,35 @@ def update_profile(request):
 
 @login_required(login_url="login/")
 def home(request):
-    players = User.objects.filter(profile__type__exact=1)
+    players = User.objects.filter(profile__type__exact='P')
     return render(request, "dashboard.html", {'user': players})
 
 
 @login_required(login_url="login/")
 def transact_money(request):
-    if request.method == 'POST':
-        user_money = request.user.profile.money
-        giving_money = request.POST.get('money')
-        if user_money >= giving_money:
-            user_money -= giving_money
-            player = giving_money
-            player.profile.money += giving_money
-            return HttpResponseRedirect('scoreboard')
+    if request.user.profile.type == 'A' :
+        if request.method == 'POST':
+            user_money = request.user.profile.money
+            giving_money = int(request.POST.get('money'))
+            player = request.POST.get('send_to')
+            if user_money>=giving_money:
+                user_money -= giving_money
+                player.profile.money += giving_money
+                return HttpResponseRedirect('scoreboard')
+            else:
+                messages.error(request, ('Please correct the error above.'))
+                transaction_form = TransactionForm
+                return render(request, 'transaction.html', {'transaction_form': transaction_form})
         else:
-            messages.error(request, ('Please correct the error below.'))
             transaction_form = TransactionForm
             return render(request, 'transaction.html', {'transaction_form': transaction_form})
     else:
-        transaction_form = TransactionForm
-        return render(request, 'transaction.html', {'transaction_form': transaction_form})
+        messages.error(request, ('You are not allowed please re-register as audience'))
 
 
 
 def scoreboard(request):
-    players = User.objects.filter(profile__type__exact=1)
+    players = User.objects.filter(profile__type__exact='P')
     return render(request, 'scoreboard.html', {'players': players})
 
 

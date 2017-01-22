@@ -8,13 +8,12 @@ from django.dispatch import receiver
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     USERCHOICES = (
-        (0, 'Audience'),
-        (1, 'Player'),
+        ('A', 'Audience'),
+        ('P', 'Player'),
     )
     college = models.CharField(max_length=200)
-    contact = PhoneNumberField()
     money = models.IntegerField(default='0')
-    type = models.BooleanField(choices=USERCHOICES, default='0')
+    type = models.CharField(choices=USERCHOICES,max_length=1)
 
 
 @receiver(post_save, sender=User)
@@ -30,5 +29,5 @@ def save_user_profile(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Profile)
 def give_money_audience(sender, instance, **kwargs):
-    if instance.type == 0:
+    if instance.type == 'A':
         instance.money = 1000000

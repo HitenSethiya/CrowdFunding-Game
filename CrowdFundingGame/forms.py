@@ -29,14 +29,14 @@ class UserForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
+
     class Meta:
         model = Profile
-        fields = ('college', 'contact', 'type')
-        widgets = {'contact': PhoneNumberPrefixWidget(attrs={'id':'mySelect', 'placeholder': 'Phone number'})}
+        fields = ('college', 'type')
 
 
 class TransactionForm(forms.Form):  # error
-    send_to = forms.ModelChoiceField(User.objects.filter(profile__type__exact=1))
+    send_to = forms.ModelChoiceField(queryset=User.objects.filter(profile__type__exact='P'))
     money = forms.IntegerField(label="Money",
                                widget=forms.NumberInput(attrs={'class': 'form-control', 'name': 'money'}))
 

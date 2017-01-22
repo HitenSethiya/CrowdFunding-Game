@@ -8,6 +8,7 @@
                         <h3 class="panel-title">Send Money</h3>
                     </div>
                     <div class="panel-body">
+                        <h1> Money Left:{{ user.profile.money }} </h1>
 <form method="post" action="{% url 'transact' %}">
 {% csrf_token %}
 <p class="bs-component">
