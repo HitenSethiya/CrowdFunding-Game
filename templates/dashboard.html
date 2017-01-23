@@ -1,18 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-<h3 align="center">Players</h3>
-{% for player in user %}
-        <div class="w3-row w3-container w3-col m4 l3" style="margin:50px; display:block">
-            <div id="booking" class="card card-outline-primary card-info text-xs-center">
-                <div class="card-block">
-                    <h4 class="card-title"><b>{{ player.username }}</b></h4>
-                    <h4 class="card-title"><b>{{ player.profile.money }}</b></h4>
-                    <p class="card-text">From</p>
-                    <p class="card-text date"><b>{{ player.profile.college }}</b><br></p>
-                    <p class="card-text">Email</p><p> <b>{{ player.email }}</b><br></p>
+<div class="w3-container" id="about">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide w3-padding-left w3-padding-right">ABOUT THE GAME AND RULES</span></h5>
+    <p>In a nutshell, Participants will pitch their B-plan and you have to fund them with virtual money. </p>
+    <p><strong>Where would we get this "virtual" money. Will somebody give us some Paytm cash!!</strong></p>
+    <p>No...
+    As soon as you signup as audience you will receive a amount of $1,000,000 in your portal account </p>
+    <p>On the basis how the idea is, and how convinced you are pay the teams with that money. Enjoy</p>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+      <p><i>Press transact money in navbar to send money or scoreboard to see who has win how much yet</i></p>
+      <p>Crowd Fund 'em up wise !!!</p>
+    </div>
 
-                </div>
-            </div>
-        </div>
-    {% endfor %}
 {% endblock %}

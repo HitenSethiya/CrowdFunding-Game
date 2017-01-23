@@ -1,18 +1,56 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
+
+<h3 align="center">Players</h3>
+    <div class="w3-container"><div id="chart_div"></div></div>
 {% for player in players %}
-    <div class="w3-row w3-container " style="margin:50px; display:block">
-            <div id="booking" class="card card-outline-primary card-info text-xs-center">
+        <div class="w3-row w3-container w3-col m9 l3" style="margin:50px; display:block">
+            <div id="PlayerCard" class="card card-outline-primary card-info text-xs-center">
                 <div class="card-block">
                     <h4 class="card-title"><b>{{ player.first_name }} {{ player.last_name }}</b></h4>
-                    <p class="card-text">{{ player.profile.college }} </p>
-                    <p class="card-title"><b>{{ player.profile.money }}</b><br></p>
+                    <h4 class="card-title"><b>{{ player.profile.money }}</b></h4>
+                    <p class="card-text">From</p>
+                    <p class="card-text date"><b>{{ player.profile.college }}</b><br></p>
+                    <p class="card-text">Email</p><p> <b>{{ player.email }}</b><br></p>
+                    <a href="{% url 'transact' %}" class="btn btn-success btn-sm" value="Send Money" >Send Money</a>
 
                 </div>
             </div>
         </div>
 
-{% endfor %}
+        {% endfor %}
+   <script type="text/javascript" src="{% static 'js/loader.js' %}"></script>
 
+      <script>
+      google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawBasic);
 
-   {% endblock %}
+function drawBasic() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['Teams', 'Funds Gathered yet'],
+          {% for player in players %}
+        ['{{ player.first_name }}{{ player.last_name }}', {{ player.profile.money }}],
+
+          {% endfor %}
+      ]);
+
+      var options = {
+        title: 'CrowdFundingGame',
+        chartArea: {width: '50%'},
+        hAxis: {
+          title: 'Total Funds Gathered yet',
+          minValue: 0
+        },
+        vAxis: {
+          title: 'Teams'
+        }
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }
+      </script>
+{% endblock %}

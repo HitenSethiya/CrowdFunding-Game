@@ -91,7 +91,7 @@ def transact_money(request):
                     player.profile.save()
                     return HttpResponseRedirect('/scoreboard')
                 else:
-                    messages.error(request, ('Please correct the error above.'))
+                    messages.error(request, ('Please enter a valid amount above.'))
                     transaction_form = TransactionForm
                     return render(request, 'transaction.html', {'transaction_form': transaction_form})
             else:
