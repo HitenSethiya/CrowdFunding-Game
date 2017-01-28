@@ -26,10 +26,9 @@ def signup(request):
                     username=form.cleaned_data['username'],
                     password=form.cleaned_data['password'],
 
-
                 )
                 authenticate(username=user.username, password=user.password)
-                login(request,user)
+                login(request, user)
                 return HttpResponseRedirect('/update_profile')
             else:
                 raise Exception
@@ -55,14 +54,14 @@ def update_profile(request):
             user_form.save()
 
             profile_form.save()
-            messages.success(request, ('Your profile was successfully updated!'))
+            messages.success(request, ('Your profile was successfully updated! Press Home on navbar to proceed'))
             return redirect('update_profile')
         else:
             messages.error(request, ('Please correct the error below.'))
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, 'profile.html', {'user_form': user_form,'profile_form': profile_form}
+    return render(request, 'profile.html', {'user_form': user_form, 'profile_form': profile_form}
                   )
 
 
@@ -74,7 +73,7 @@ def home(request):
 
 @login_required(login_url="login/")
 def transact_money(request):
-    if request.user.profile.type == 'A' :
+    if request.user.profile.type == 'A':
         if request.method == 'POST':
             form = TransactionForm(request.POST)
             if form.is_valid():
@@ -82,7 +81,7 @@ def transact_money(request):
                 giving_money = form.cleaned_data['money']
                 player = form.cleaned_data['send_to']
                 print(player)
-                if user_money >= giving_money:
+                if user_money >= giving_money and giving_money >= 0:
                     request.user.profile.money -= giving_money
                     print(user_money, request.user.profile.money)
                     request.user.profile.save()
@@ -103,7 +102,6 @@ def transact_money(request):
         messages.error(request, ('You are not allowed please re-register as audience'))
         transaction_form = TransactionForm
         return render(request, 'transaction.html', {'transaction_form': transaction_form})
-
 
 
 def scoreboard(request):
