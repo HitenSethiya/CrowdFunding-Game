@@ -1,1 +1,1 @@
-web: gunicorn CGF.wsgi
+web: gunicorn CFG.wsgi

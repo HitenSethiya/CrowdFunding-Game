@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'CFG',
+    'CrowdFundingGame',
 
 ]
 
@@ -116,8 +116,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-PHONENUMBER_DB_FORMAT = 'NATIONAL'
-PHONENUMBER_DEFAULT_REGION = '+91'
 
 
 
