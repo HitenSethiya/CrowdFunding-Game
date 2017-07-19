@@ -1,0 +1,7 @@
+*.pyc
+db.sqlite3
+cfg
+.idea
+__pycache__
+local_settings.py
+migrations
