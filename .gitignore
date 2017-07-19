@@ -5,3 +5,4 @@ cfg
 __pycache__
 local_settings.py
 migrations
+initial_data.json
