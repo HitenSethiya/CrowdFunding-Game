@@ -34,11 +34,11 @@ def signup(request):
                 raise Exception
         else:
             form = SignupForm()
-            variables = RequestContext(request, {'form': form})
+            variables = {'form': form}
 
             return render_to_response(
                 'signup.html',
-                variables,
+                variables
             )
     else:
         return HttpResponseRedirect('/update_profile')
